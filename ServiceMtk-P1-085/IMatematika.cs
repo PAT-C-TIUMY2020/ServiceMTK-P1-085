@@ -63,4 +63,13 @@ namespace ServiceMtk_P1_085
             set { stringValue = value; }
         }
     }
+
+    [DataContract]
+    class MathFault
+    {
+        [DataMember]
+        public string Kode { get; set; }
+        [DataMember]
+        public string Pesan { get; set; }
+    }
 }
