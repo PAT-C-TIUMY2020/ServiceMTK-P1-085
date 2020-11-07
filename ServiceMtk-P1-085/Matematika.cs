@@ -75,8 +75,25 @@ namespace ServiceMtk_P1_085
 
         public int Tambah(int a, int b)
         {
-            return a + b;
+            try
+            {
+                return a + b;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                //secara default
+                //throw new Exception(ex.Message) //pesan error secara default
+                //throw new FaultException ("Pesan Salah") //untuk meloloskan pesan error yang dikirim ke client
+
+                MathFault mf = new MathFault();
+                mf.Kode = "Inputan Yang Anda Masukan Salah";
+                mf.Pesan = "Masukkan input yang benar";
+                throw new FaultException<MathFault>(mf);
+            }
         }
+
         //TKoordinat:nama methodnya, a,b = input seperti int.
         //Membuat koordinat hasil lalu menjumlahkan xa dengan xb, ya
         //dengan yb lalu dimasukkan ke hasil
