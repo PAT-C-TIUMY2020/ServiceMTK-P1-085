@@ -101,12 +101,13 @@ namespace ServiceMtk_P1_085
         public Koordinat TKoordinat(Koordinat a, Koordinat b)
         {
             try
-            { 
-            Koordinat hasil = new Koordinat();
-            hasil.X = a.X + b.X;
-            hasil.Y = a.Y + b.Y;
-            return hasil;
-        } catch (Exception ex)
+            {
+                Koordinat hasil = new Koordinat();
+                hasil.X = a.X + b.X;
+                hasil.Y = a.Y + b.Y;
+                return hasil;
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 //secara default
@@ -118,6 +119,6 @@ namespace ServiceMtk_P1_085
                 mf.Pesan = "Masukkan input yang benar";
                 throw new FaultException<MathFault>(mf);
             }
-
+        }
     }
 }
