@@ -12,8 +12,25 @@ namespace ServiceMtk_P1_085
     {
         public int Bagi(int a, int b)
         {
-            return a / b;
+            try
+            {
+                return a / b;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                //secara default
+                //throw new Exception(ex.Message) //pesan error secara default
+                //throw new FaultException ("Pesan Salah") //untuk meloloskan pesan error yang dikirim ke client
+
+                MathFault mf = new MathFault();
+                mf.Kode = "Inputan Yang Anda Masukan Salah";
+                mf.Pesan = "Masukkan input yang benar";
+                throw new FaultException<MathFault>(mf);
+            }
         }
+
         public int Kali(int a, int b)
         {
             return a * b;
